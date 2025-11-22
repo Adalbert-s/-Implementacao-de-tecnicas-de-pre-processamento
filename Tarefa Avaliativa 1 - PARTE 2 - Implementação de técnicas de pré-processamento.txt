@@ -47,12 +47,14 @@ Com valores de "A" maiores que 1, o detalhe é reforçado.
 Já o Passa-Alta puro remove baixa frequência e mantém apenas bordas, o que pode criar um efeito mais artificial e ruidoso.
 
 Comparação
-| Característica | High-Boost | Passa-Alta |
-|:--------:|:------:|:--------:|
-| Realce de detalhes | Alto | Médio |
-| Naturalidade do resultado | Alta | Baixa |
-| Intensidade das bordas | Moderada | Alta |
-| Risco de ruído | Baixo | Alto |
+-------------------------------------------------------
+|        Característica     | High-Boost | Passa-Alta |
+|-----------------------------------------------------|
+|     Realce de detalhes    |     Alto   |    Médio   |
+| Naturalidade do resultado |     Alta   |    Baixa   |
+|   Intensidade das bordas  |   Moderada |    Alta    |
+|       Risco de ruído      |     Baixo  |    Alto    |
+-------------------------------------------------------
 
 
 4) Resultados medidos no código
@@ -86,3 +88,4 @@ Imagens grandes					FFT
 Kernels grandes (ex.: 21×21, 51×51…)		FFT
 
 Aplicações em tempo real com filtros simples	Convolução direta
+
