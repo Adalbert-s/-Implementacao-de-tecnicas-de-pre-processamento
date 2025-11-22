@@ -85,9 +85,10 @@ Comparação
 ------------------------------------------------------------------------
 |  Imagens pequenas				                       |  Diferença pequena  |
 |  Kernels pequenos (3×3, 5×5)			             |  Convolução direta  |
-|  Imagens grandes					                 |        FFT        |
+|  Imagens grandes					            |        FFT        |
 |  Kernels grandes (ex.: 21×21, 51×51…)	         |	      FFT        |
 |  Aplicações em tempo real com filtros simples  |	Convolução direta  |
 ------------------------------------------------------------------------
+
 
 
