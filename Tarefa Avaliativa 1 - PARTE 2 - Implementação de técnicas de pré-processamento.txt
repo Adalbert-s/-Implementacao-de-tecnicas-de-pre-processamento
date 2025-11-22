@@ -1,55 +1,55 @@
 1) Resultados
-A imagem original foi convertida para tons de cinza e, em seguida, reduzida para diferentes quantidades de níveis usando uma técnica de clusterização por limiarização.
-A imagem final apresenta menos tons de cinza, com regiões mais compactadas e contrastes mais marcados.
+  A imagem original foi convertida para tons de cinza e, em seguida, reduzida para diferentes quantidades de níveis usando uma técnica de clusterização por limiarização.
+  A imagem final apresenta menos tons de cinza, com regiões mais compactadas e contrastes mais marcados.
 
 Análise
-Com a redução do número de níveis, percebe-se:
-Perda gradual de detalhes finos conforme os níveis diminuem.
-A imagem fica mais “chapada”, com áreas que antes possuíam transições suaves sendo agrupadas em faixas amplas.
-A técnica funciona como uma forma simples de quantização, adequada para compactação ou para simplificar a imagem antes de segmentações.
+  Com a redução do número de níveis, percebe-se:
+  Perda gradual de detalhes finos conforme os níveis diminuem.
+  A imagem fica mais “chapada”, com áreas que antes possuíam transições suaves sendo agrupadas em faixas amplas.
+  A técnica funciona como uma forma simples de quantização, adequada para compactação ou para simplificar a imagem antes de segmentações.
 
 Comparação
-Com mais níveis, a imagem mantém melhor fidelidade ao original.
-Com menos níveis, a perda de informação aumenta, porém o contorno das regiões fica mais evidente.
-A abordagem é eficiente para reduzir complexidade sem alterar significativamente a estrutura geral da imagem.
+  Com mais níveis, a imagem mantém melhor fidelidade ao original.
+  Com menos níveis, a perda de informação aumenta, porém o contorno das regiões fica mais evidente.
+  A abordagem é eficiente para reduzir complexidade sem alterar significativamente a estrutura geral da imagem.
 
 
 2) Resultados
-O procedimento foi dividido em etapas:
-Subtração do fundo:
-A diferença entre a imagem com a pessoa e a imagem do cenário vazio gera a máscara da região onde o corpo está localizado.
-Binarização:
-A imagem resultante da subtração é binarizada. Isso isola o corpo de modo mais nítido.
-Detecção de contornos:
-O método findContours foi utilizado para identificar o contorno do corpo.
-Cada contorno significativo é desenhado e marcado com um retângulo delimitador.
+  O procedimento foi dividido em etapas:
+    Subtração do fundo:
+      A diferença entre a imagem com a pessoa e a imagem do cenário vazio gera a máscara da região onde o corpo está localizado.
+    Binarização:
+      A imagem resultante da subtração é binarizada. Isso isola o corpo de modo mais nítido.
+    Detecção de contornos:
+      O método findContours foi utilizado para identificar o contorno do corpo.
+      Cada contorno significativo é desenhado e marcado com um retângulo delimitador.
 
 Análise
-O método funciona muito bem quando as duas imagens (com e sem pessoa) têm iluminação semelhante.
-A subtração destaca principalmente regiões em movimento ou diferentes do fundo.
-A binarização amplia a separação entre fundo e objeto, permitindo fácil detecção de contornos.
+  O método funciona muito bem quando as duas imagens (com e sem pessoa) têm iluminação semelhante.
+  A subtração destaca principalmente regiões em movimento ou diferentes do fundo.
+  A binarização amplia a separação entre fundo e objeto, permitindo fácil detecção de contornos.
 
 Comparação
-A imagem apenas subtraída apresenta ruído e variações suaves.
-A imagem binarizada resulta em uma máscara muito mais limpa.
-O contorno obtido após a binarização é adequado para aplicações simples como: rastreamento, reconhecimento corporal inicial, sistemas de detecção de movimento.
+  A imagem apenas subtraída apresenta ruído e variações suaves.
+  A imagem binarizada resulta em uma máscara muito mais limpa.
+  O contorno obtido após a binarização é adequado para aplicações simples como: rastreamento, reconhecimento corporal inicial, sistemas de detecção de movimento.
 
 
 3) Resultado
-Foram aplicados dois filtros:
-Filtro High-Boost, que aumentou a nitidez geral da imagem, realçou bordas e detalhes finos mantendo a estrutura original, funcionou como uma amplificação do conteúdo de alta frequência somado à imagem original.
-Filtro Passa-Alta, que destacou exclusivamente as bordas, a imagem resultante tem aparência mais agressiva e menos natural e há menos preservação dos tons originais.
+  Foram aplicados dois filtros:
+    Filtro High-Boost, que aumentou a nitidez geral da imagem, realçou bordas e detalhes finos mantendo a estrutura original, funcionou como uma amplificação do conteúdo de alta frequência somado à imagem original.
+    Filtro Passa-Alta, que destacou exclusivamente as bordas, a imagem resultante tem aparência mais agressiva e menos natural e há menos preservação dos tons originais.
 
 Análise
-O filtro High-Boost melhora nitidez sem distorcer tanto a imagem, porque usa a combinação:
-Imagem final = A·imagem original − imagem suavizada
-Com valores de "A" maiores que 1, o detalhe é reforçado.
-Já o Passa-Alta puro remove baixa frequência e mantém apenas bordas, o que pode criar um efeito mais artificial e ruidoso.
+  O filtro High-Boost melhora nitidez sem distorcer tanto a imagem, porque usa a combinação:
+    Imagem final = A·imagem original − imagem suavizada
+    Com valores de "A" maiores que 1, o detalhe é reforçado.
+  Já o Passa-Alta puro remove baixa frequência e mantém apenas bordas, o que pode criar um efeito mais artificial e ruidoso.
 
 Comparação
 -------------------------------------------------------
 |        Característica     | High-Boost | Passa-Alta |
-|-----------------------------------------------------|
+-------------------------------------------------------
 |     Realce de detalhes    |     Alto   |    Médio   |
 | Naturalidade do resultado |     Alta   |    Baixa   |
 |   Intensidade das bordas  |   Moderada |    Alta    |
@@ -58,34 +58,34 @@ Comparação
 
 
 4) Resultados medidos no código
-O notebook mede o tempo para:
-Convolução direta com cv2.filter2D
-Convolução via FFT (multiplicação no domínio da frequência)
-Em geral, os resultados exibidos no notebook mostram:
-Para imagens pequenas, os tempos são parecidos.
-Para imagens maiores, a FFT é significativamente mais rápida.
+  O código mede o tempo para:
+    Convolução direta com cv2.filter2D
+    Convolução via FFT (multiplicação no domínio da frequência)
+  Em geral, os resultados exibidos no código mostram que:
+    Para imagens pequenas, os tempos são parecidos.
+    Para imagens maiores, a FFT é significativamente mais rápida.
 
 Análise
-A convolução direta tem custo:
-📌 O(h·w·kh·kw)
-onde:
-h, w → tamanho da imagem
-kh, kw → tamanho do kernel
+  A convolução direta tem custo:
+    O(h·w·kh·kw)
+  onde:
+    h, w → tamanho da imagem
+    kh, kw → tamanho do kernel
 
-Já a convolução usando FFT tem custo aproximado:
-📌 O((h·w) log(h·w))
-Isso torna a FFT vantajosa quando:
-
-A imagem é grande
-O kernel é grande
-Quer-se desempenho
+  Já a convolução usando FFT tem custo aproximado:
+    O((h·w) log(h·w))
+  Isso torna a FFT vantajosa quando:
+    A imagem é grande
+    O kernel é grande
+    Quer-se desempenho
 
 Comparação
-Situação					Melhor método
-Imagens pequenas				Diferença pequena
-Kernels pequenos (3×3, 5×5)			Convolução direta
-Imagens grandes					FFT
-Kernels grandes (ex.: 21×21, 51×51…)		FFT
-
-Aplicações em tempo real com filtros simples	Convolução direta
-
+------------------------------------------------------------------------
+|   Situação					                           |     Melhor método   |
+------------------------------------------------------------------------
+|  Imagens pequenas				                       |  Diferença pequena  |
+|  Kernels pequenos (3×3, 5×5)			             |  Convolução direta  |
+|  Imagens grandes					                     |          FFT        |
+|  Kernels grandes (ex.: 21×21, 51×51…)	         |	        FFT        |
+|  Aplicações em tempo real com filtros simples  |	Convolução direta  |
+------------------------------------------------------------------------
