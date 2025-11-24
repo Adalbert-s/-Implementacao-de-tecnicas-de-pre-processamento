@@ -73,3 +73,6 @@ Ciência da Computação
 **Diogo Azevedo Batagini**  
 Ciência da Computação
 
+**video tambem disponivel no Youtube**
+https://youtu.be/9qt1sttdVjs
+
